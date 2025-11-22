@@ -1,0 +1,11 @@
+.env
+
+__pycache__/
+*.pyc
+test/*
+test_screenshots/*
+.DS_Store
+.vscode/
+dist/
+examples/
+tmp/

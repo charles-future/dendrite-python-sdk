@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '**'
+  pull_request:
+    branches:
+    - main
+
+
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    name: lint ${{ matrix.python-version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.9', '3.10', '3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python version
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Create and start virtual environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+      
+      - name: Install dependencies
+        run: |
+          pipx install poetry
+           poetry install --with dev
+
+      - name: Linting with flake8
+        run: |
+          # stop the build if there are Python syntax errors or undefined names
+          poetry run flake8 dendrite/ --count --select=E9,F63,F7,F82 --show-source --statistics
+    
+      - name: Linting with pylint
+        run: poetry run pylint dendrite/ --errors-only
+
+  test:
+    runs-on: ubuntu-latest
+    env:
+      BROWSERBASE_API_KEY: ${{ secrets.BROWSERBASE_API_KEY }} 
+      BROWSERBASE_PROJECT_ID: ${{ secrets.BROWSERBASE_PROJECT_ID }} 
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python version
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+
+      - name: Create and start virtual environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+      
+      - name: Install dependencies
+        run: |
+          pipx install poetry
+          poetry install --with dev
+
+      - name: Ensure browsers are installed
+        run: poetry run dendrite install
+
+      - name: Run async tests
+        run: poetry run pytest tests/tests_async
+
+      - name: Run sync tests
+        run: poetry run pytest tests/tests_sync
