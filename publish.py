@@ -1,4 +1,3 @@
-    else:
         print(result.stdout)
 
 
