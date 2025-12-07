@@ -1,4 +1,3 @@
-    if result.returncode != 0:
         print(f"Error: {result.stderr}")
     else:
         print(result.stdout)
