@@ -1,4 +1,3 @@
-        print(f"Error: {result.stderr}")
     else:
         print(result.stdout)
 
