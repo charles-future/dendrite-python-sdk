@@ -1,5 +1,3 @@
-        print(result.stdout)
-
 
 # Step 1: Clean the dist directory
 print("Cleaning the dist directory...")
