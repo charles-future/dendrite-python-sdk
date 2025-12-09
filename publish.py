@@ -1,4 +1,3 @@
-        print(result.stdout)
 
 
 # Step 1: Clean the dist directory
