@@ -1,5 +1,4 @@
 
-
 # Step 1: Clean the dist directory
 print("Cleaning the dist directory...")
 run_command("rm -rf dist/*")
