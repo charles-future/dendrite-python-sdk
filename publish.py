@@ -1,8 +1,4 @@
 
-# Step 1: Clean the dist directory
-print("Cleaning the dist directory...")
-run_command("rm -rf dist/*")
-
 # Step 2: Build the package
 print("Building the package...")
 run_command("poetry build")
