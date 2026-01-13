@@ -1,4 +1,3 @@
-print("Cleaning the dist directory...")
 run_command("rm -rf dist/*")
 
 # Step 2: Build the package
