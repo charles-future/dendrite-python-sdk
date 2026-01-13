@@ -1,4 +1,3 @@
-run_command("rm -rf dist/*")
 
 # Step 2: Build the package
 print("Building the package...")
