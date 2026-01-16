@@ -1,4 +1,3 @@
-run_command("poetry build")
 
 # Step 3: Publish the package to PyPI
 print("Publishing the package to PyPI...")
