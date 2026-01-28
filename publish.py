@@ -1,4 +1,3 @@
-print("Publishing the package to PyPI...")
 run_command("poetry publish")
 
 print("Done!")
