@@ -1,5 +1,3 @@
-
-# Step 3: Publish the package to PyPI
 print("Publishing the package to PyPI...")
 run_command("poetry publish")
 
